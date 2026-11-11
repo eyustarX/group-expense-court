@@ -1,0 +1,21 @@
+{
+  "name": "group-expense-court-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/local.js",
+  "scripts": {
+    "dev": "node src/local.js",
+    "start": "node src/local.js"
+  },
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.758.0",
+    "@aws-sdk/client-textract": "^3.758.0",
+    "@neondatabase/serverless": "^0.10.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "serverless-http": "^3.2.0"
+  }
+}
+
