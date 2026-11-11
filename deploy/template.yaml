@@ -1,0 +1,92 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Group Expense Court - Serverless Backend
+  Node.js 20 Express App wrapped with serverless-http behind API Gateway HTTP API.
+
+Parameters:
+  DatabaseUrl:
+    Type: String
+    NoEcho: true
+    Description: Neon Serverless PostgreSQL connection string (pooled)
+  BedrockModelId:
+    Type: String
+    Default: 'anthropic.claude-3-haiku-20240307-v1:0'
+    Description: Bedrock Foundation Model ID for AI verdicts
+  FrontendOrigin:
+    Type: String
+    Default: '*'
+    Description: Allowed frontend CORS origin (e.g. https://my-bucket.s3-website.amazonaws.com)
+
+Globals:
+  Function:
+    Timeout: 15
+    MemorySize: 512
+    Runtime: nodejs20.x
+    Architectures:
+      - x86_64
+    Environment:
+      Variables:
+        DATABASE_URL: !Ref DatabaseUrl
+        BEDROCK_MODEL_ID: !Ref BedrockModelId
+        FRONTEND_ORIGIN: !Ref FrontendOrigin
+        NODE_ENV: production
+
+Resources:
+  # HTTP API Gateway with CORS configured
+  CourtHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowMethods:
+          - GET
+          - POST
+          - PATCH
+          - PUT
+          - DELETE
+          - OPTIONS
+        AllowHeaders:
+          - Content-Type
+          - Authorization
+        AllowOrigins:
+          - !Ref FrontendOrigin
+
+  # Express Lambda Function
+  CourtBackendFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ../backend/
+      Handler: src/lambda.handler
+      Description: Group Expense Court Express API Handler
+      Policies:
+        # Least Privilege IAM: Only AnalyzeExpense and InvokeModel
+        - Statement:
+            - Effect: Allow
+              Action:
+                - textract:AnalyzeExpense
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: '*'
+      Events:
+        ApiProxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CourtHttpApi
+            Path: /{proxy+}
+            Method: ANY
+        RootProxy:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref CourtHttpApi
+            Path: /
+            Method: ANY
+
+Outputs:
+  CourtApiUrl:
+    Description: HTTP API Gateway endpoint URL for Group Expense Court
+    Value: !Sub "https://${CourtHttpApi}.execute-api.${AWS::Region}.amazonaws.com"
+  CourtFunctionArn:
+    Description: Lambda Function ARN
+    Value: !GetAtt CourtBackendFunction.Arn
