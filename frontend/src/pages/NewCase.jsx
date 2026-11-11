@@ -556,3 +556,4 @@ export default function NewCase({ group, members, currentMember, language, onExp
     </div>
   );
 }
+

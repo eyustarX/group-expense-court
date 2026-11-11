@@ -96,3 +96,4 @@ export const api = {
   // Textract Scan
   scanReceipt: (base64Image) => request('/api/scan', { method: 'POST', body: JSON.stringify({ image: base64Image }) }),
 };
+

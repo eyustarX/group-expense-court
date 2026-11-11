@@ -260,3 +260,4 @@ export default function CaseDetail({ expenseId, currentMember, language, onBack 
     </div>
   );
 }
+

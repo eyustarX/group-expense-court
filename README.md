@@ -58,7 +58,7 @@ Here is a beginner-friendly breakdown of every folder:
 | `backend/` | **Express & Cloud Functions** | Express app running identically on local Node.js (`src/local.js`) and AWS Lambda (`src/lambda.js`). Contains Textract OCR (`textract.js`), AI Judge (`judge.js`), Neon Postgres client (`db.js`), and REST route handlers. |
 | `db/` | **Database Schema & Migrations** | PostgreSQL DDL script (`schema.sql`), idempotent demo data (`seed.sql`), and a Node runner (`migrate.js`) to set up your Neon database with one command. |
 | `frontend/` | **User Interface** | React + Vite + Tailwind CSS mobile-first web app. Includes multilingual support in English, Amharic, and Afaan Oromo (`i18n.js`), client-side image compression, and court-themed views. |
-| `deploy/` | **Cloud Infrastructure** | AWS SAM template (`template.yaml`) for deploying the Lambda function and HTTP API with least-privilege IAM roles, plus a copy-paste deployment guide (`DEPLOY.md`). |
+| `deploy/` | **Cloud Infrastructure** | AWS SAM template (`template.yaml`), Render Blueprint (`render.yaml`), Vercel configuration (`vercel.json`), plus complete guides for AWS (`DEPLOY.md`) and Vercel + Render (`VERCEL_AND_RENDER.md`). |
 
 ---
 
@@ -105,6 +105,15 @@ Open [http://localhost:5173](http://localhost:5173) in your browser. Tap **"Ente
 
 ---
 
+## 🌐 Deploy to Vercel & Render (Free & Fast)
+
+Want to show your live app on mobile in 5 minutes?
+- **Backend on Render**: [Step-by-step instructions in deploy/VERCEL_AND_RENDER.md](deploy/VERCEL_AND_RENDER.md) (uses `render.yaml`)
+- **Frontend on Vercel**: [Step-by-step instructions in deploy/VERCEL_AND_RENDER.md](deploy/VERCEL_AND_RENDER.md) (uses `vercel.json`)
+- **Backend on AWS SAM**: [Step-by-step instructions in deploy/DEPLOY.md](deploy/DEPLOY.md) (uses `deploy/template.yaml`)
+
+---
+
 ## 📸 Screenshots & Court Walkthrough
 
 1. **The Courtroom Docket (Home / Group)**:
@@ -131,3 +140,4 @@ Open [http://localhost:5173](http://localhost:5173) in your browser. Tap **"Ente
 - **Courtroom Metaphor**: Explain how turning awkward money talks into playful legal theater ("Case files", "Gavel button", "Hall of Shame") makes splitting fun.
 - **Local Context**: Highlight Ethiopian Birr (ETB) formatting, Amharic & Afaan Oromo language options, and proportional splitting for VAT + service charge.
 - **Zero-Friction UX**: No signups, no email verification; users join in 3 seconds via 4-digit court code.
+

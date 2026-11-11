@@ -123,3 +123,4 @@ export default function HallOfShame({ group, currentMember, language, onBack }) 
     </div>
   );
 }
+

@@ -59,3 +59,4 @@ export default function Navbar({ currentCourt, currentMember, language, setLangu
     </header>
   );
 }
+

@@ -170,3 +170,4 @@ export async function query(text, params = []) {
 export function isNeonConfigured() {
   return Boolean(pool);
 }
+

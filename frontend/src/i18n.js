@@ -187,3 +187,4 @@ export const translations = {
     offlineNotice: 'Itti fayyadama daawwannaa keessa jirtu.',
   },
 };
+

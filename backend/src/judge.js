@@ -147,3 +147,4 @@ Deliver the 2-sentence humorous courtroom verdict now.`;
     verdict: getFallbackVerdict(),
   };
 }
+

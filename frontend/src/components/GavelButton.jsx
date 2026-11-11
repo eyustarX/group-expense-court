@@ -32,3 +32,4 @@ export default function GavelButton({ children, onClick, disabled, className = '
     </button>
   );
 }
+

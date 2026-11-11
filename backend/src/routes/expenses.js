@@ -4,7 +4,7 @@
 
 import express from 'express';
 import { query, isNeonConfigured, memoryStore } from '../db.js';
-import { splitExpense } from '../../shared/split.js';
+import { splitExpense } from '../../../shared/split.js';
 
 const router = express.Router();
 
@@ -198,3 +198,4 @@ router.get('/expenses/:id', async (req, res) => {
 });
 
 export default router;
+

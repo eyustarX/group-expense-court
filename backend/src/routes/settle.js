@@ -4,8 +4,8 @@
 
 import express from 'express';
 import { query, isNeonConfigured, memoryStore } from '../db.js';
-import { netBalances, minimizePayments } from '../../shared/settle.js';
-import { splitExpense } from '../../shared/split.js';
+import { netBalances, minimizePayments } from '../../../shared/settle.js';
+import { splitExpense } from '../../../shared/split.js';
 
 const router = express.Router();
 
@@ -219,3 +219,4 @@ router.patch('/payments/:id/paid', async (req, res) => {
 });
 
 export default router;
+

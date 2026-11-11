@@ -200,3 +200,4 @@ export default function SettleUp({ group, currentMember, language, onBack }) {
     </div>
   );
 }
+

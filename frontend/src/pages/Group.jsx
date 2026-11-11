@@ -161,3 +161,4 @@ export default function Group({ group, currentMember, language, onNavigate, onSe
     </div>
   );
 }
+
